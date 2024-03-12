@@ -2,12 +2,13 @@ import { useState } from "react";
 import { IoMdCopy } from "react-icons/io";
 import { IoCheckmark } from "react-icons/io5";
 import { upper, lower, special, numbers } from "./charcters";
+import Notify from "./msgs";
 
 export default function App() {
   const [IncludeSpecialCharcters, setIncludeSpecialCharcters] = useState(false);
   const [IncludeUpper, setIncludeUpper] = useState(false);
-  const [IncludeLower, setIncludeLower] = useState(false);
   const [IncludeNumber, setIncludeNumber] = useState(false);
+  const [IncludeLower, setIncludeLower] = useState(false);
   const [Password, setPassword] = useState("");
   const [passLength, setPassLength] = useState(8);
 
@@ -46,11 +47,18 @@ export default function App() {
     <div className="bg-[#292929] grid place-items-center h-100v w-full font-JetBrains text-white selection:bg-purple-900 selection:text-purple-950">
       <div className="bg-purple-800 grid place-items-center px-10 py-8 rounded-md">
         <h1 className=" font-bold tracking-widest">Password Generator</h1>
-
         <div className="w-96">
           <div className="flex gap-5 px-4 py-2 h-10 bg-purple-950 rounded-md w-full justify-center relative my-5">
             <span>{Password}</span>
-            <IoMdCopy size={25} className="absolute right-5" />
+            <button className="absolute right-5" onClick={() => {
+              navigator.clipboard.writeText(Password).then(() => {
+                alert('Content copied to clipboard');
+                /* Resolved - text copied to clipboard successfully */
+              }, () => {
+                alert('Failed to copy');
+                /* Rejected - text failed to copy to the clipboard */
+              });
+            }}><IoMdCopy size={25} className="absolute right-5" /></button>
           </div>
 
           <div className="flex flex-col w-full items-center gap-3">
@@ -130,8 +138,6 @@ export default function App() {
                 className="absolute right-0.5 top-0.5 text-white transition-opacity opacity-0 pointer-events-none peer-checked:opacity-100"
               />
             </div>
-
-
           </div>
           <button
             onClick={HandleCreatePassword}

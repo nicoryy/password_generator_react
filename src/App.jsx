@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { IoMdCopy } from "react-icons/io";
-import { IoAlertCircleSharp, IoCheckmark } from "react-icons/io5";
+import { IoCheckmark } from "react-icons/io5";
 import { upper, lower, special, numbers } from "./charcters";
-import { list } from "postcss";
 
 export default function App() {
   const [IncludeSpecialCharcters, setIncludeSpecialCharcters] = useState(false);

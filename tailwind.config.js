@@ -15,10 +15,15 @@ export default {
         "90v": "90vh",
         "100v": "100vh",
       },
+      screens:{
+        'xs':'320px',
+        '2xs':'425px'
+      }
     },
     fontFamily: {
       JetBrains: "JetBrains Mono",
     },
+    
   },
   plugins: [],
 };

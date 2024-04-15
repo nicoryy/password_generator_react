@@ -2,7 +2,6 @@ import { useState } from "react";
 import { IoMdCopy } from "react-icons/io";
 import { IoCheckmark } from "react-icons/io5";
 import { upper, lower, special, numbers } from "./charcters";
-import Notify from "./msgs";
 
 export default function App() {
   const [IncludeSpecialCharcters, setIncludeSpecialCharcters] = useState(false);
@@ -45,10 +44,12 @@ export default function App() {
 
   return (
     <div className="bg-[#292929] grid place-items-center h-100v w-full font-JetBrains text-white selection:bg-purple-900 selection:text-purple-950">
-      <div className="bg-purple-800 grid place-items-center px-10 py-8 rounded-md">
+      <div className="bg-purple-800 grid place-items-center px-10 py-8 rounded-md max-md:w-[80%] ">
         <h1 className=" font-bold tracking-widest">Password Generator</h1>
-        <div className="w-96">
-          <div className="flex gap-5 px-4 py-2 h-10 bg-purple-950 rounded-md w-full justify-center relative my-5">
+        <div className="w-full">
+          <div className="flex text-sm gap-5 px-4 py-2.5 h-10 bg-purple-950 rounded-md 
+          w-full justify-center relative my-5 xs:text-xs
+          ">
             <span>{Password}</span>
             <button className="absolute right-5" onClick={() => {
               navigator.clipboard.writeText(Password).then(() => {
@@ -58,7 +59,7 @@ export default function App() {
                 alert('Failed to copy');
                 /* Rejected - text failed to copy to the clipboard */
               });
-            }}><IoMdCopy size={25} className="absolute right-5" /></button>
+            }}><IoMdCopy size={25} className="absolute md:right-0 xs:size-5 lg:-right-1 xs:-right-3" /></button>
           </div>
 
           <div className="flex flex-col w-full items-center gap-3">
@@ -67,15 +68,15 @@ export default function App() {
               id="minmax-range"
               type="range"
               min="0"
-              max="24"
+              max="19"
               value={passLength}
               onChange={(e) => setPassLength(e.target.value)}
               class="w-full h-2 bg-purple-950 rounded-xl appearance-none cursor-pointer mb-5 thumb "
             ></input>
           </div>
 
-          <div className="grid w-full gap-x-5 gap-y-2 grid-cols-2 text-sm">
-            <div className="flex relative w-full justify-between">
+          <div className="grid w-full gap-x-5 gap-y-2 2xs:grid-cols-2 grid-cols-1 text-sm">
+            <div className="flex relative w-full gap-2 justify-between">
               <label htmlFor="special">Special Characters</label>
               <input
                 checked={IncludeSpecialCharcters}
@@ -92,7 +93,7 @@ export default function App() {
             </div>
 
             <div className="flex relative w-full justify-between">
-              <label htmlFor="lower">Include Lower Case</label>
+              <label htmlFor="lower">Lower Case</label>
               <input
                 checked={IncludeLower}
                 onChange={(e) => setIncludeLower(e.target.checked)}
@@ -108,7 +109,7 @@ export default function App() {
             </div>
 
             <div className="flex relative w-full justify-between">
-              <label htmlFor="upper">Include Upper Case</label>
+              <label htmlFor="upper">Upper Case</label>
               <input
                 checked={IncludeUpper}
                 onChange={(e) => setIncludeUpper(e.target.checked)}
@@ -124,7 +125,7 @@ export default function App() {
             </div>
 
             <div className="flex relative w-full justify-between">
-              <label htmlFor="number">Include Numbers</label>
+              <label htmlFor="number">Numbers</label>
               <input
                 checked={IncludeNumber}
                 onChange={(e) => setIncludeNumber(e.target.checked)}
